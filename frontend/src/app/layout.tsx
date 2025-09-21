@@ -32,7 +32,9 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
+          storageKey="theme"
+          themes={["light", "dark", "system"]}
+          disableTransitionOnChange={false}
         >
           {children}
         </ThemeProvider>

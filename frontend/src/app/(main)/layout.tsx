@@ -5,9 +5,11 @@ import React from "react";
 const HomeLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <Navbar />
-      <ChatbotPopup/>
-      {children}
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <ChatbotPopup />
+        <main className="flex-1">{children}</main>
+      </div>
     </>
   );
 };
