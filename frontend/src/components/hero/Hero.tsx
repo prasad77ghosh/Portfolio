@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 import {
@@ -13,6 +12,9 @@ import {
   Code,
   Zap,
 } from "lucide-react";
+import { Spotlight } from "../ui/spotlight-new";
+import { ShineBorder } from "../ui/shine-border";
+import { FlipTexts } from "./FlipWards";
 
 interface SocialLink {
   icon: React.ComponentType<{ className?: string }>;
@@ -25,14 +27,14 @@ const Hero: React.FC = () => {
 
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ 
-        x: (e.clientX - window.innerWidth / 2) * 0.01, 
-        y: (e.clientY - window.innerHeight / 2) * 0.01 
+      setMousePosition({
+        x: (e.clientX - window.innerWidth / 2) * 0.01,
+        y: (e.clientY - window.innerHeight / 2) * 0.01,
       });
     };
 
-    window.addEventListener('mousemove', updateMousePosition);
-    return () => window.removeEventListener('mousemove', updateMousePosition);
+    window.addEventListener("mousemove", updateMousePosition);
+    return () => window.removeEventListener("mousemove", updateMousePosition);
   }, []);
 
   const containerVariants: Variants = {
@@ -76,7 +78,7 @@ const Hero: React.FC = () => {
       {/* Dynamic Background Grid */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
-        
+
         {/* Animated gradient orbs */}
         <motion.div
           className="absolute top-1/4 left-1/5 w-96 h-96 bg-gradient-to-r from-purple-500/15 via-pink-500/10 to-orange-400/15 rounded-full blur-3xl"
@@ -131,6 +133,8 @@ const Hero: React.FC = () => {
         initial="hidden"
         animate="visible"
       >
+        <Spotlight />
+
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
           {/* Left Content */}
           <div className="space-y-12 text-center lg:text-left">
@@ -185,7 +189,7 @@ const Hero: React.FC = () => {
                     />
                   </motion.span>
                 </h1>
-                
+
                 {/* Decorative elements around name */}
                 <motion.div
                   className="absolute -top-2 -right-4 w-4 h-4 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full"
@@ -197,16 +201,20 @@ const Hero: React.FC = () => {
                 />
               </div>
 
-              <motion.h2
+              <motion.div
                 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-muted-foreground"
                 variants={itemVariants}
               >
-                <span className="flex items-center gap-3 justify-center lg:justify-start">
+                <div className="flex items-center justify-center lg:justify-start">
                   <Code className="w-5 h-5 text-purple-500" />
-                  Software Engineer & Developer
+                  <div className="flex items-center justify-center gap-1 ml-2">
+                    <p>I&apos;m a</p>
+                    <FlipTexts strArr={["Software Engineer", "Fronted Developer", "Backend Developer", "Full Stack Developer"]}/>
+                  </div>
+                  {/* Software Engineer & Developer */}
                   <Zap className="w-5 h-5 text-orange-400" />
-                </span>
-              </motion.h2>
+                </div>
+              </motion.div>
             </motion.div>
 
             {/* Enhanced Description */}
@@ -214,9 +222,16 @@ const Hero: React.FC = () => {
               variants={itemVariants}
               className="text-lg text-muted-foreground max-w-2xl leading-relaxed"
             >
-              Crafting <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 font-semibold">exceptional digital experiences</span> through 
-              clean code, innovative solutions, and cutting-edge technologies. 
-              Let&apos;s <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 font-semibold">build something extraordinary</span> together.
+              Crafting{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 font-semibold">
+                exceptional digital experiences
+              </span>{" "}
+              through clean code, innovative solutions, and cutting-edge
+              technologies. Let&apos;s{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 font-semibold">
+                build something extraordinary
+              </span>{" "}
+              together.
             </motion.p>
 
             {/* Enhanced Action Buttons */}
@@ -230,13 +245,11 @@ const Hero: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 initial={{ boxShadow: "0 4px 15px rgba(0,0,0,0.1)" }}
               >
+                <motion.div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                />
-                <motion.div
-                  className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
                   animate={{
-                    x: ['-100%', '100%'],
+                    x: ["-100%", "100%"],
                   }}
                   transition={{
                     duration: 1.5,
@@ -251,7 +264,7 @@ const Hero: React.FC = () => {
               </motion.button>
 
               <motion.button
-                className="group px-8 py-3 border-2 border-purple-500/30 hover:border-purple-500 rounded-xl font-semibold text-foreground hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-orange-400 hover:text-white transition-all duration-500 backdrop-blur-sm"
+                className="group px-8 py-3 border-2 border-purple-500/30 hover:border-purple-500 rounded-xl font-semibold text-foreground hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-orange-400 hover:text-white transition-all duration-500 backdrop-blur-sm cursor-pointer"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -280,9 +293,7 @@ const Hero: React.FC = () => {
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5 text-accent-foreground group-hover:text-purple-500 transition-colors duration-300" />
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-orange-400/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  />
+                  <motion.div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-orange-400/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </motion.a>
               ))}
             </motion.div>
@@ -309,28 +320,29 @@ const Hero: React.FC = () => {
               }}
             >
               {/* Main Profile Image - Blended with Background */}
-              <div className="relative w-80 h-96 sm:w-[30rem] sm:h-[35rem] overflow-hidden rounded-3xl mb-14">
-                <motion.img 
-                  src="./profile_01.png" 
+              <div className="relative w-80 h-96 sm:w-[30rem] sm:h-[35rem] overflow-hidden rounded-3xl mb-12">
+                 <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
+                <motion.img
+                  src="./profile_01.png"
                   alt="Prasad - Software Engineer"
                   className="w-full h-full object-cover opacity-90"
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.05,
                     opacity: 1,
-                    filter: "brightness(1.05)"
+                    filter: "brightness(1.05)",
                   }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                 />
-                
+
                 {/* Background blend overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-background/20 via-transparent to-primary/10 mix-blend-overlay" />
-                
+
                 {/* Subtle edge fade */}
                 <div className="absolute inset-0 bg-gradient-to-r from-background/30 via-transparent to-background/30" />
                 <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/40" />
-                
+
                 {/* Dynamic hover overlay */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 bg-gradient-to-t from-purple-500/20 via-transparent to-orange-400/10 opacity-0 group-hover:opacity-100"
                   transition={{ duration: 0.5 }}
                 />
@@ -383,7 +395,7 @@ const Hero: React.FC = () => {
                 }}
               />
 
-                {/* Particle effects around image */}
+              {/* Particle effects around image */}
               {[...Array(6)].map((_, i) => (
                 <motion.div
                   key={i}
@@ -426,7 +438,7 @@ const Hero: React.FC = () => {
             Scroll Down
           </span>
           <motion.div
-            className="w-[3px] h-10 bg-gradient-to-b from-purple-500 via-pink-500 to-orange-400 rounded-full"
+            className="w-[3px] h-4 bg-gradient-to-b from-purple-500 via-pink-500 to-orange-400 rounded-full"
             animate={{
               scaleY: [1, 1.5, 1],
             }}
