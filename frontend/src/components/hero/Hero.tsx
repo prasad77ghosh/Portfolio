@@ -15,6 +15,8 @@ import {
 import { Spotlight } from "../ui/spotlight-new";
 import { ShineBorder } from "../ui/shine-border";
 import { FlipTexts } from "./FlipWards";
+import FloatingBackgroundGradient from "./FloatingBackground";
+import InteractiveParticles from "./InteractiveParticles";
 
 interface SocialLink {
   icon: React.ComponentType<{ className?: string }>;
@@ -78,52 +80,8 @@ const Hero: React.FC = () => {
       {/* Dynamic Background Grid */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
-
-        {/* Animated gradient orbs */}
-        <motion.div
-          className="absolute top-1/4 left-1/5 w-96 h-96 bg-gradient-to-r from-purple-500/15 via-pink-500/10 to-orange-400/15 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.4, 0.7, 0.4],
-            x: [0, 50, -30, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/5 w-80 h-80 bg-gradient-to-l from-orange-400/12 via-pink-500/8 to-purple-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
-            x: [0, -40, 20, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-
-        {/* Interactive particles */}
-        <motion.div
-          className="absolute w-1 h-1 bg-purple-500/50 rounded-full"
-          style={{
-            left: `${50 + mousePosition.x * 2}%`,
-            top: `${30 + mousePosition.y * 2}%`,
-          }}
-          transition={{ type: "spring", stiffness: 50, damping: 20 }}
-        />
-        <motion.div
-          className="absolute w-2 h-2 bg-pink-500/40 rounded-full"
-          style={{
-            left: `${30 + mousePosition.x * -1.5}%`,
-            top: `${60 + mousePosition.y * 1.5}%`,
-          }}
-          transition={{ type: "spring", stiffness: 30, damping: 15 }}
-        />
+        <FloatingBackgroundGradient />
+        <InteractiveParticles mousePosition={mousePosition} />
       </div>
 
       {/* Main Content */}
@@ -209,7 +167,14 @@ const Hero: React.FC = () => {
                   <Code className="w-5 h-5 text-purple-500" />
                   <div className="flex items-center justify-center gap-1 ml-2">
                     <p>I&apos;m a</p>
-                    <FlipTexts strArr={["Software Engineer", "Fronted Developer", "Backend Developer", "Full Stack Developer"]}/>
+                    <FlipTexts
+                      strArr={[
+                        "Software Engineer",
+                        "Fronted Developer",
+                        "Backend Developer",
+                        "Full Stack Developer",
+                      ]}
+                    />
                   </div>
                   {/* Software Engineer & Developer */}
                   <Zap className="w-5 h-5 text-orange-400" />
@@ -321,7 +286,7 @@ const Hero: React.FC = () => {
             >
               {/* Main Profile Image - Blended with Background */}
               <div className="relative w-80 h-96 sm:w-[30rem] sm:h-[35rem] overflow-hidden rounded-3xl mb-12">
-                 <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
+                <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
                 <motion.img
                   src="./profile_01.png"
                   alt="Prasad - Software Engineer"
