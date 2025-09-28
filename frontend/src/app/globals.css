@@ -1,5 +1,37 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+/* Locomotive Scroll CSS */
+html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.has-scroll-smooth body {
+  overflow: hidden;
+}
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-container] {
+  height: 100vh;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-section] {
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  height: 100%;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -138,11 +170,114 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+.dark .c-scrollbar_thumb {
+  background: linear-gradient(to bottom, #a855f7, #f472b6);
+  opacity: 0.9;
+}
+
+.dark .c-scrollbar_thumb:hover {
+  background: linear-gradient(to bottom, #9333ea, #e879f9);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Locomotive Scroll Custom Styles */
+@layer components {
+  [data-scroll-container] {
+    min-height: 100vh;
+    height: auto;
+  }
+
+  [data-scroll-section] {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  /* Custom Locomotive Scrollbar */
+  .c-scrollbar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 11px;
+    height: 100%;
+    transform-origin: center right;
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0;
+    z-index: 999;
+  }
+
+  .c-scrollbar:hover {
+    transform: scaleX(1.45);
+  }
+
+  .c-scrollbar:hover,
+  .has-scroll-scrolling .c-scrollbar,
+  .has-scroll-dragging .c-scrollbar {
+    opacity: 1;
+  }
+
+  .c-scrollbar_thumb {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(to bottom, #8b5cf6, #ec4899);
+    opacity: 0.8;
+    width: 7px;
+    border-radius: 10px;
+    margin: 2px;
+    cursor: grab;
+    transition: background 0.2s ease;
+  }
+
+  .c-scrollbar_thumb:hover {
+    background: linear-gradient(to bottom, #7c3aed, #db2777);
+  }
+
+  .has-scroll-dragging .c-scrollbar_thumb {
+    cursor: grabbing;
+  }
+
+  /* Ensure smooth scroll body setup */
+  .has-scroll-smooth {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .has-scroll-smooth::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Debug styles to ensure scrollbar visibility */
+  .c-scrollbar {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Animation classes for scroll reveals */
+  .is-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .is-inview {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Smooth performance optimizations */
+  .has-scroll-smooth {
+    will-change: transform;
+  }
+
+  .has-scroll-smooth [data-scroll] {
+    will-change: transform;
   }
 }
