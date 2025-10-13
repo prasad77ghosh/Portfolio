@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Marquee } from "../ui/marquee";
+import { Marquee } from "../../ui/marquee";
 
 const techStacks = [
   {

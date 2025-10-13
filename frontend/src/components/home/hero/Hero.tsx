@@ -12,11 +12,11 @@ import {
   Code,
   Zap,
 } from "lucide-react";
-import { Spotlight } from "../ui/spotlight-new";
-import { ShineBorder } from "../ui/shine-border";
 import { FlipTexts } from "./FlipWards";
 import FloatingBackgroundGradient from "./FloatingBackground";
 import InteractiveParticles from "./InteractiveParticles";
+import { Spotlight } from "@/components/ui/spotlight-new";
+import { ShineBorder } from "@/components/ui/shine-border";
 
 interface SocialLink {
   icon: React.ComponentType<{ className?: string }>;
@@ -169,10 +169,10 @@ const Hero: React.FC = () => {
                     <p>I&apos;m a</p>
                     <FlipTexts
                       strArr={[
+                        "Full Stack Developer",
                         "Software Engineer",
                         "Fronted Developer",
                         "Backend Developer",
-                        "Full Stack Developer",
                       ]}
                     />
                   </div>

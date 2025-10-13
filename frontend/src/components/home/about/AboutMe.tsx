@@ -417,7 +417,6 @@ const CTAButton = () => {
 
 const AboutMe = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  console.log("Mouse_Position--->", mousePosition);
 
   const credentials = [
     { number: 50, label: "Projects Completed", suffix: "+" },
@@ -491,7 +490,7 @@ const AboutMe = () => {
   };
 
   return (
-    <section className="relative overflow-hidden" data-scroll-section>
+    <section className="relative overflow-hidden">
       <BackgroundElements />
 
       <motion.div
