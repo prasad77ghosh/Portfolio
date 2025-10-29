@@ -1,5 +1,5 @@
 "use client";
-import { IconArrowNarrowRight } from "@tabler/icons-react";
+// import { IconArrowNarrowRight } from "@tabler/icons-react";
 import { useState, useRef, useId, useEffect } from "react";
 
 interface SlideData {
@@ -144,7 +144,7 @@ const CarouselControl = ({
       title={title}
       onClick={handleClick}
     >
-      <IconArrowNarrowRight className="text-neutral-600 dark:text-neutral-200" />
+      {/* <IconArrowNarrowRight className="text-neutral-600 dark:text-neutral-200" /> */}
     </button>
   );
 };

@@ -96,7 +96,11 @@ const BackgroundElements = () => (
 );
 
 // Profile image component
-const ProfileImage = ({ parallaxEffect }: { parallaxEffect: { x: number; y: number } }) => {
+const ProfileImage = ({
+  parallaxEffect,
+}: {
+  parallaxEffect: { x: number; y: number };
+}) => {
   const imageVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -135,7 +139,7 @@ const ProfileImage = ({ parallaxEffect }: { parallaxEffect: { x: number; y: numb
           className="relative overflow-hidden rounded-3xl bg-gray-900/40 backdrop-blur-sm border border-gray-700/30 p-1"
           whileHover={{
             scale: 1.02,
-            transition: { duration: 0.4, ease: "easeOut" }
+            transition: { duration: 0.4, ease: "easeOut" },
           }}
         >
           <div className="rounded-2xl overflow-hidden bg-gray-800/20">
@@ -147,7 +151,7 @@ const ProfileImage = ({ parallaxEffect }: { parallaxEffect: { x: number; y: numb
               className="w-full h-auto object-cover"
               whileHover={{
                 scale: 1.03,
-                transition: { duration: 0.6, ease: "easeOut" }
+                transition: { duration: 0.6, ease: "easeOut" },
               }}
             />
           </div>
@@ -169,7 +173,7 @@ const ProfileImage = ({ parallaxEffect }: { parallaxEffect: { x: number; y: numb
           }}
           whileHover={{
             scale: 1.1,
-            transition: { duration: 0.3 }
+            transition: { duration: 0.3 },
           }}
         >
           <span className="text-lg">⚡</span>
@@ -235,11 +239,14 @@ const ContentSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            I&apos;m a passionate full-stack developer with expertise in crafting{" "}
+            I&apos;m a passionate full-stack developer with expertise in
+            crafting{" "}
             <span className="text-purple-400 font-medium">
               exceptional digital experiences
             </span>{" "}
-            through clean code, innovative solutions, and cutting-edge technologies. My journey has been driven by curiosity and a constant desire to learn and grow.
+            through clean code, innovative solutions, and cutting-edge
+            technologies. My journey has been driven by curiosity and a constant
+            desire to learn and grow.
           </motion.p>
 
           <motion.p
@@ -249,7 +256,9 @@ const ContentSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            When I&apos;m not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community. Let&apos;s{" "}
+            When I&apos;m not coding, you can find me exploring new
+            technologies, contributing to open-source projects, or sharing
+            knowledge with the developer community. Let&apos;s{" "}
             <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent font-medium">
               build something extraordinary
             </span>{" "}
@@ -262,14 +271,20 @@ const ContentSection = () => {
 };
 
 // Credentials grid component
-const CredentialsGrid = ({ credentials, counters }: { credentials: Credential[]; counters: CounterResult[] }) => {
+const CredentialsGrid = ({
+  credentials,
+  counters,
+}: {
+  credentials: Credential[];
+  counters: CounterResult[];
+}) => {
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.5, // Reduced from 0.8
         ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
@@ -281,18 +296,15 @@ const CredentialsGrid = ({ credentials, counters }: { credentials: Credential[];
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.5, // Reduced from 0.8
         ease: [0.25, 0.46, 0.45, 0.94],
-        delay: 0.2,
+        delay: 0.1, // Reduced from 0.2
       },
     },
   };
 
   return (
-    <motion.div
-      variants={itemVariants}
-      className="grid grid-cols-2 gap-6"
-    >
+    <motion.div variants={itemVariants} className="grid grid-cols-2 gap-6">
       {credentials.map((cred, index) => {
         const { count, setIsVisible } = counters[index];
 
@@ -303,7 +315,7 @@ const CredentialsGrid = ({ credentials, counters }: { credentials: Credential[];
             className="relative group"
             whileHover={{
               y: -4,
-              transition: { duration: 0.3, ease: "easeOut" }
+              transition: { duration: 0.3, ease: "easeOut" },
             }}
             onViewportEnter={() => setIsVisible(true)}
             viewport={{ once: true, amount: 0.8 }}
@@ -312,7 +324,7 @@ const CredentialsGrid = ({ credentials, counters }: { credentials: Credential[];
               className="relative text-center p-6 rounded-2xl bg-gray-900/30 backdrop-blur-sm border border-gray-700/30 hover:border-gray-600/50 transition-all duration-400"
               whileHover={{
                 backgroundColor: "rgba(17, 24, 39, 0.4)",
-                transition: { duration: 0.3 }
+                transition: { duration: 0.3 },
               }}
             >
               <motion.div
@@ -320,21 +332,22 @@ const CredentialsGrid = ({ credentials, counters }: { credentials: Credential[];
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.8,
-                  delay: index * 0.1 + 1.0,
+                  duration: 0.5, // Reduced from 0.8
+                  delay: index * 0.08 + 0.3, // Reduced delays
                   ease: "easeOut",
                 }}
                 viewport={{ once: true }}
               >
-                {count}{cred.suffix}
+                {count}
+                {cred.suffix}
               </motion.div>
               <motion.div
                 className="text-sm text-gray-400 font-medium"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.6,
-                  delay: index * 0.1 + 1.3,
+                  duration: 0.4, // Reduced from 0.6
+                  delay: index * 0.08 + 0.5, // Reduced delays
                   ease: "easeOut",
                 }}
                 viewport={{ once: true }}
@@ -372,7 +385,7 @@ const CTAButton = () => {
         className="group relative inline-flex items-center px-8 py-4 text-white font-semibold rounded-2xl overflow-hidden"
         whileHover={{
           y: -2,
-          transition: { duration: 0.3, ease: "easeOut" }
+          transition: { duration: 0.3, ease: "easeOut" },
         }}
         whileTap={{ scale: 0.98 }}
         initial={{ opacity: 0, y: 20 }}
@@ -400,7 +413,7 @@ const CTAButton = () => {
           viewBox="0 0 24 24"
           whileHover={{
             x: 4,
-            transition: { duration: 0.3, ease: "easeOut" }
+            transition: { duration: 0.3, ease: "easeOut" },
           }}
         >
           <path
@@ -440,13 +453,12 @@ const AboutMe = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        duration: 0.8,
+        staggerChildren: 0.1, // Reduced from 0.15 for faster stagger
+        duration: 0.5, // Reduced from 0.8 for faster animation
         ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
   };
-
 
   // Elegant counter animation hook
   const useCounter = (end: number, duration: number = 3) => {
@@ -459,7 +471,10 @@ const AboutMe = () => {
       let startTime: number;
       const animate = (currentTime: number) => {
         if (!startTime) startTime = currentTime;
-        const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+        const progress = Math.min(
+          (currentTime - startTime) / (duration * 1000),
+          1
+        );
 
         // Smooth easing function for elegant counting
         const easeOutQuart = 1 - Math.pow(1 - progress, 4);
@@ -485,8 +500,14 @@ const AboutMe = () => {
 
   // Subtle parallax effect for professional feel
   const parallaxEffect = {
-    x: (mousePosition.x - (typeof window !== "undefined" ? window.innerWidth / 2 : 0)) * 0.008,
-    y: (mousePosition.y - (typeof window !== "undefined" ? window.innerHeight / 2 : 0)) * 0.008,
+    x:
+      (mousePosition.x -
+        (typeof window !== "undefined" ? window.innerWidth / 2 : 0)) *
+      0.008,
+    y:
+      (mousePosition.y -
+        (typeof window !== "undefined" ? window.innerHeight / 2 : 0)) *
+      0.008,
   };
 
   return (
@@ -506,8 +527,8 @@ const AboutMe = () => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Side - Image */}
-            <div data-scroll data-scroll-speed="0.2">
+            {/* Left Side - Image - FASTER ANIMATION */}
+            <div data-scroll data-scroll-speed="0.4">
               <ProfileImage parallaxEffect={parallaxEffect} />
             </div>
 
@@ -517,7 +538,10 @@ const AboutMe = () => {
                 <ContentSection />
               </div>
               <div data-scroll data-scroll-speed="0.15">
-                <CredentialsGrid credentials={credentials} counters={counters} />
+                <CredentialsGrid
+                  credentials={credentials}
+                  counters={counters}
+                />
               </div>
               <div data-scroll data-scroll-speed="0.05">
                 <CTAButton />
