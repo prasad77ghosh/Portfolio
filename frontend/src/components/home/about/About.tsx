@@ -4,9 +4,9 @@ import AboutMe from "./AboutMe";
 
 const About = () => {
   return (
-    <div>
-      <TechMarquee/>
-      <AboutMe/>
+    <div className="min-h-screen">
+      <TechMarquee />
+      <AboutMe />
     </div>
   );
 };

@@ -41,7 +41,7 @@ const MarqueeItemWithPopover = ({
           onClick={() => setIsOpen(false)}
         >
           <div
-            className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 w-[90%] md:w-[70%] h-[80%] p-8"
+            className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 w-[95%] sm:w-[85%] md:w-[75%] lg:w-[70%] h-[85%] md:h-[80%] p-4 md:p-6 lg:p-8"
             onClick={(e) => e.stopPropagation()} // Prevent close on inner click
             onMouseLeave={() => setIsOpen(false)}
           >
@@ -74,14 +74,14 @@ export function ProjectTab() {
       title: "Web Devs",
       value: "web-development",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-2xl p-3 text-xl md:text-4xl font-bold text-white bg-background">
+        <div className="w-full overflow-hidden relative h-full rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 text-base sm:text-xl md:text-4xl font-bold text-white bg-background">
           <Marquee reverse pauseOnHover className="[--duration:50s]">
             {Array(6)
               .fill(null)
               .map((_, index) => (
                 <MarqueeItemWithPopover
                   key={index}
-                  className="w-[900px] cursor-pointer"
+                  className="w-[260px] sm:w-[400px] md:w-[600px] lg:w-[800px] xl:w-[900px] cursor-pointer"
                 >
                   <Safari url="magicui.design" />
                 </MarqueeItemWithPopover>
@@ -94,14 +94,14 @@ export function ProjectTab() {
       title: "Mobile Devs",
       value: "mobile-development",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-2xl p-3 text-xl md:text-4xl font-bold text-white bg-background">
+        <div className="w-full overflow-hidden relative h-full rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 text-base sm:text-xl md:text-4xl font-bold text-white bg-background">
           <Marquee reverse pauseOnHover className="[--duration:50s]">
             {Array(6)
               .fill(null)
               .map((_, index) => (
                 <MarqueeItemWithPopover
                   key={index}
-                  className="w-[300px] cursor-pointer"
+                  className="w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] cursor-pointer"
                 >
                   <Iphone />
                 </MarqueeItemWithPopover>
@@ -114,7 +114,7 @@ export function ProjectTab() {
       title: "AI/ML Projects",
       value: "ai-ml",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-background">
+        <div className="w-full overflow-hidden relative h-full rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 text-base sm:text-xl md:text-4xl font-bold text-white bg-background">
           <p>Playground tab</p>
           <DummyContent />
         </div>
@@ -123,7 +123,7 @@ export function ProjectTab() {
   ];
 
   return (
-    <div className="h-[20rem] md:h-[43rem] [perspective:1000px] relative flex flex-col mx-auto w-full items-start justify-start mt-10">
+    <div className="h-[22rem] sm:h-[28rem] md:h-[38rem] lg:h-[43rem] [perspective:1000px] relative flex flex-col mx-auto w-full items-start justify-start mt-4 sm:mt-6 md:mt-8 lg:mt-10">
       <Tabs tabs={tabs} />
     </div>
   );
@@ -139,7 +139,7 @@ const DummyContent = () => {
       alt="dummy image"
       width="1000"
       height="1000"
-      className="object-cover object-left-top h-[60%] md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+      className="object-cover object-left-top h-[50%] sm:h-[60%] md:h-[80%] lg:h-[90%] absolute -bottom-10 inset-x-0 w-[95%] sm:w-[90%] rounded-lg md:rounded-xl mx-auto"
     />
   );
 };

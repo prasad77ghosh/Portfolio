@@ -157,7 +157,7 @@ const TechCard = ({
 
 export function TechMarquee() {
   return (
-    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-8 sm:py-10 lg:py-12">
       <Marquee pauseOnHover className="[--duration:20s]">
         {firstRow.map((tech) => (
           <TechCard key={tech.name} {...tech} />
